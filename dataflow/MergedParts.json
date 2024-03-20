@@ -1,0 +1,202 @@
+{
+	"name": "MergedParts",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Parts_TFAN",
+						"type": "DatasetReference"
+					},
+					"name": "PartsTFAN"
+				},
+				{
+					"dataset": {
+						"referenceName": "Parts_PW1XX",
+						"type": "DatasetReference"
+					},
+					"name": "PartsPW1XX"
+				},
+				{
+					"dataset": {
+						"referenceName": "Parts_PW127",
+						"type": "DatasetReference"
+					},
+					"name": "PartsPW127"
+				},
+				{
+					"dataset": {
+						"referenceName": "Parts_PW150",
+						"type": "DatasetReference"
+					},
+					"name": "PartsPW150"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "MergedParts",
+						"type": "DatasetReference"
+					},
+					"name": "MergedParts"
+				}
+			],
+			"transformations": [
+				{
+					"name": "PartsUnion"
+				},
+				{
+					"name": "select1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          PartDetailsId as string,",
+				"          EngineModel as string,",
+				"          Plant as string,",
+				"          SalesOrderNumber as string,",
+				"          InvoiceNumber as string,",
+				"          InvoiceDate as string,",
+				"          InvoiceMonth as string,",
+				"          InvoiceYear as string,",
+				"          EndCustomerARCode as string,",
+				"          EndCustomer as string,",
+				"          PayerARCode as string,",
+				"          PayerName as string,",
+				"          EngineModule as string,",
+				"          InvoiceRecordType as string,",
+				"          MaterialInstalled as string,",
+				"          MaterialDescription as string,",
+				"          MaterialGroup as string,",
+				"          PartRemovalReason as string,",
+				"          IWBEnginePosition as string,",
+				"          MajorParts as string,",
+				"          PricingMonth as string,",
+				"          UnitPrice as float,",
+				"          Quantity as float,",
+				"          TotalInvoicePriceEscalatedAtPPHRateOrDiscount as float,",
+				"          ExtendedList as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> PartsTFAN",
+				"source(output(",
+				"          PartDetailsId as string,",
+				"          EngineModel as string,",
+				"          Plant as string,",
+				"          SalesOrderNumber as string,",
+				"          InvoiceNumber as string,",
+				"          InvoiceDate as string,",
+				"          InvoiceMonth as string,",
+				"          InvoiceYear as string,",
+				"          EndCustomerARCode as string,",
+				"          EndCustomer as string,",
+				"          PayerARCode as string,",
+				"          PayerName as string,",
+				"          EngineModule as string,",
+				"          InvoiceRecordType as string,",
+				"          MaterialInstalled as string,",
+				"          MaterialDescription as string,",
+				"          MaterialGroup as string,",
+				"          PartRemovalReason as string,",
+				"          IWBEnginePosition as string,",
+				"          MajorParts as string,",
+				"          PricingMonth as string,",
+				"          UnitPrice as float,",
+				"          Quantity as float,",
+				"          ExtendedList as string,",
+				"          TotalInvoicePriceEscalatedAtPPHRateOrDiscount as float",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> PartsPW1XX",
+				"source(output(",
+				"          PartDetailsId as string,",
+				"          EngineModel as string,",
+				"          Plant as string,",
+				"          SalesOrderNumber as string,",
+				"          InvoiceNumber as string,",
+				"          InvoiceDate as string,",
+				"          InvoiceMonth as string,",
+				"          InvoiceYear as string,",
+				"          EndCustomerARCode8 as string,",
+				"          EndCustomerName as string,",
+				"          EndCustomerARCode10 as string,",
+				"          PayerName as string,",
+				"          EngineModule as string,",
+				"          InvoiceRecordType as string,",
+				"          MaterialInstalled as string,",
+				"          MaterialDescription as string,",
+				"          MaterialGroup as string,",
+				"          PartRemovalReason as string,",
+				"          IWBEnginePosition as string,",
+				"          MajorParts as string,",
+				"          PricingMonth as string,",
+				"          UnitPrice as float,",
+				"          Quantity as float,",
+				"          TotalInvoicePriceEscalatedAtPPHRateOrDiscount as float,",
+				"          ExtendedList as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> PartsPW127",
+				"source(output(",
+				"          PartDetailsId as string,",
+				"          EngineModel as string,",
+				"          Plant as string,",
+				"          SalesOrderNumber as string,",
+				"          InvoiceNumber as string,",
+				"          InvoiceDate as string,",
+				"          InvoiceMonth as string,",
+				"          InvoiceYear as string,",
+				"          EndCustomerARCode as string,",
+				"          EndCustomerName as string,",
+				"          PayerARCode as string,",
+				"          PayerName as string,",
+				"          EngineModule as string,",
+				"          InvoiceRecordType as string,",
+				"          MaterialInstalled as string,",
+				"          MaterialDescription as string,",
+				"          MaterialGroup as string,",
+				"          PartRemovalReason as string,",
+				"          IWBEnginePosition as string,",
+				"          MajorParts as string,",
+				"          PricingMonth as string,",
+				"          UnitPrice as float,",
+				"          Quantity as float,",
+				"          TotalInvoicePriceEscalatedAtPPHRateOrDiscount as float,",
+				"          ExtendedList as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> PartsPW150",
+				"PartsTFAN, PartsPW150, PartsPW1XX, PartsPW127 union(byName: true)~> PartsUnion",
+				"PartsUnion select(mapColumn(",
+				"          EngineModel,",
+				"          {LCF Part} = Plant,",
+				"          SalesOrderNumber,",
+				"          ModuleType = EngineModule,",
+				"          MaterialInstalled,",
+				"          MaterialDescription,",
+				"          UnitPrice,",
+				"          Quantity,",
+				"          FinalPrice = TotalInvoicePriceEscalatedAtPPHRateOrDiscount,",
+				"          ExtendedList",
+				"     ),",
+				"     partitionBy('hash', 1),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['MergedParts'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> MergedParts"
+			]
+		}
+	}
+}
