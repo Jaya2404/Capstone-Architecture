@@ -1,0 +1,124 @@
+{
+	"name": "DOF",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "InvoiceData"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "dofInvoice_data.csv",
+				"folderPath": "raw data",
+				"fileSystem": "pwc-capstone"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "PartDetailsId",
+				"type": "String"
+			},
+			{
+				"name": "EngineModel",
+				"type": "String"
+			},
+			{
+				"name": "Plant",
+				"type": "String"
+			},
+			{
+				"name": "SalesOrderNumber",
+				"type": "String"
+			},
+			{
+				"name": "InvoiceDate",
+				"type": "String"
+			},
+			{
+				"name": "InvoiceMonth",
+				"type": "String"
+			},
+			{
+				"name": "InvoiceYear",
+				"type": "String"
+			},
+			{
+				"name": "EndCustomerARCode",
+				"type": "String"
+			},
+			{
+				"name": "EndCustomerName",
+				"type": "String"
+			},
+			{
+				"name": "PayerARCode",
+				"type": "String"
+			},
+			{
+				"name": "PayerName",
+				"type": "String"
+			},
+			{
+				"name": "EngineModule",
+				"type": "String"
+			},
+			{
+				"name": "InvoiceRecordType",
+				"type": "String"
+			},
+			{
+				"name": "MaterialInstalled",
+				"type": "String"
+			},
+			{
+				"name": "MaterialDescription",
+				"type": "String"
+			},
+			{
+				"name": "MaterialGroup",
+				"type": "String"
+			},
+			{
+				"name": "PartRemovalReason",
+				"type": "String"
+			},
+			{
+				"name": "IWBEnginePosition",
+				"type": "String"
+			},
+			{
+				"name": "MajorParts",
+				"type": "String"
+			},
+			{
+				"name": "PricingMonth",
+				"type": "String"
+			},
+			{
+				"name": "UnitPrice",
+				"type": "String"
+			},
+			{
+				"name": "Quantity",
+				"type": "String"
+			},
+			{
+				"name": "TotalInvoicePriceEscalatedAtPPHRateOrDiscount",
+				"type": "String"
+			},
+			{
+				"name": "ExtendedList",
+				"type": "String"
+			}
+		]
+	}
+}
