@@ -127,7 +127,7 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "UseCase1",
+						"name": "dataflow1",
 						"type": "ExecuteDataFlow",
 						"dependsOn": [],
 						"policy": {
@@ -140,14 +140,15 @@
 						"userProperties": [],
 						"typeProperties": {
 							"dataflow": {
-								"referenceName": "UseCase1",
+								"referenceName": "dataflow1",
 								"type": "DataFlowReference",
 								"parameters": {},
 								"datasetParameters": {
-									"PartsMerged": {},
-									"InvoiceMerged": {},
+									"source1": {},
+									"source2": {},
 									"UseCase1": {}
-								}
+								},
+								"linkedServiceParameters": {}
 							},
 							"staging": {},
 							"compute": {
@@ -164,7 +165,7 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/dataflows/UseCase1')]"
+				"[concat(variables('factoryId'), '/dataflows/dataflow1')]"
 			]
 		},
 		{
@@ -2258,7 +2259,60 @@
 					"firstRowAsHeader": true,
 					"quoteChar": "\""
 				},
-				"schema": []
+				"schema": [
+					{
+						"name": "EngineModel",
+						"type": "String"
+					},
+					{
+						"name": "LCF Part",
+						"type": "String"
+					},
+					{
+						"name": "SalesOrderNumber",
+						"type": "String"
+					},
+					{
+						"name": "ModuleType",
+						"type": "String"
+					},
+					{
+						"name": "MaterialInstalled",
+						"type": "String"
+					},
+					{
+						"name": "MaterialDescription",
+						"type": "String"
+					},
+					{
+						"name": "UnitPrice",
+						"type": "String"
+					},
+					{
+						"name": "Quantity",
+						"type": "String"
+					},
+					{
+						"name": "FinalPrice",
+						"type": "String"
+					},
+					{
+						"name": "ExtendedList",
+						"type": "String"
+					},
+					{
+						"name": "LCF Parts",
+						"type": "String"
+					},
+					{
+						"name": "PrimaryWorkscope",
+						"type": "String"
+					},
+					{
+						"name": "SecondaryWorkscope",
+						"type": "String"
+					}
+				]
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
@@ -2946,7 +3000,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/UseCase1')]",
+			"name": "[concat(parameters('factoryName'), '/dataflow1')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -2958,14 +3012,14 @@
 								"referenceName": "MergedParts",
 								"type": "DatasetReference"
 							},
-							"name": "PartsMerged"
+							"name": "source1"
 						},
 						{
 							"dataset": {
 								"referenceName": "MergedInvoice",
 								"type": "DatasetReference"
 							},
-							"name": "InvoiceMerged"
+							"name": "source2"
 						}
 					],
 					"sinks": [
@@ -2997,7 +3051,7 @@
 						"     ),",
 						"     allowSchemaDrift: true,",
 						"     validateSchema: false,",
-						"     ignoreNoFilesFound: false) ~> PartsMerged",
+						"     ignoreNoFilesFound: false) ~> source1",
 						"source(output(",
 						"          EngineModel as string,",
 						"          SalesOrderNumber as string,",
@@ -3006,14 +3060,30 @@
 						"     ),",
 						"     allowSchemaDrift: true,",
 						"     validateSchema: false,",
-						"     ignoreNoFilesFound: false) ~> InvoiceMerged",
-						"PartsMerged, InvoiceMerged join(PartsMerged@EngineModel == InvoiceMerged@EngineModel,",
+						"     ignoreNoFilesFound: false) ~> source2",
+						"source1, source2 join(source1@EngineModel == source2@EngineModel",
+						"     && source1@SalesOrderNumber == source2@SalesOrderNumber,",
 						"     joinType:'inner',",
 						"     matchType:'exact',",
 						"     ignoreSpaces: false,",
 						"     broadcast: 'auto')~> join1",
 						"join1 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
+						"     input(",
+						"          EngineModel as string,",
+						"          {LCF Part} as string,",
+						"          SalesOrderNumber as string,",
+						"          ModuleType as string,",
+						"          MaterialInstalled as string,",
+						"          MaterialDescription as string,",
+						"          UnitPrice as string,",
+						"          Quantity as string,",
+						"          FinalPrice as string,",
+						"          ExtendedList as string,",
+						"          {LCF Parts} as string,",
+						"          PrimaryWorkscope as string,",
+						"          SecondaryWorkscope as string",
+						"     ),",
 						"     partitionFileNames:['UseCase1'],",
 						"     umask: 0022,",
 						"     preCommands: [],",
@@ -3027,156 +3097,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/MergedParts')]",
 				"[concat(variables('factoryId'), '/datasets/MergedInvoice')]",
-				"[concat(variables('factoryId'), '/datasets/UseCase1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/dataflow1')]",
-			"type": "Microsoft.DataFactory/factories/dataflows",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "MappingDataFlow",
-				"typeProperties": {
-					"sources": [
-						{
-							"dataset": {
-								"referenceName": "Parts_DOF",
-								"type": "DatasetReference"
-							},
-							"name": "source1"
-						},
-						{
-							"dataset": {
-								"referenceName": "NewTest",
-								"type": "DatasetReference"
-							},
-							"name": "source2"
-						}
-					],
-					"sinks": [
-						{
-							"dataset": {
-								"referenceName": "UseCase1",
-								"type": "DatasetReference"
-							},
-							"name": "sink1"
-						}
-					],
-					"transformations": [
-						{
-							"name": "join1"
-						}
-					],
-					"scriptLines": [
-						"source(output(",
-						"          PartDetailsId as string,",
-						"          EngineModel as string,",
-						"          Plant as string,",
-						"          SalesOrderNumber as string,",
-						"          InvoiceDate as string,",
-						"          InvoiceMonth as string,",
-						"          InvoiceYear as string,",
-						"          EndCustomerARCode as string,",
-						"          EndCustomerName as string,",
-						"          PayerARCode as string,",
-						"          PayerName as string,",
-						"          EngineModule as string,",
-						"          InvoiceRecordType as string,",
-						"          MaterialInstalled as string,",
-						"          MaterialDescription as string,",
-						"          MaterialGroup as string,",
-						"          PartRemovalReason as string,",
-						"          IWBEnginePosition as string,",
-						"          MajorParts as string,",
-						"          PricingMonth as string,",
-						"          UnitPrice as string,",
-						"          Quantity as string,",
-						"          TotalInvoicePriceEscalatedAtPPHRateOrDiscount as string,",
-						"          ExtendedList as string",
-						"     ),",
-						"     allowSchemaDrift: true,",
-						"     validateSchema: false,",
-						"     ignoreNoFilesFound: false) ~> source1",
-						"source(output(",
-						"          InvoiceFrontPageId as string,",
-						"          EngineModel as string,",
-						"          SalesOrderNumber as string,",
-						"          OtherDocuments as string,",
-						"          SDPlant as string,",
-						"          PricingDate as string,",
-						"          PrimaryModuleType as string,",
-						"          PrimaryModule2Type as string,",
-						"          SecondaryModuleType as string,",
-						"          PrimaryModuleSerialNumber as string,",
-						"          PrimaryModule2SerialNumber as string,",
-						"          SecondaryModuleSerialNumber as string,",
-						"          ReasonForRemovalBW as string,",
-						"          ReasonForRemovalAdditionalInfo as string,",
-						"          ShopEventDate as string,",
-						"          ShippedDate as string,",
-						"          InvoiceDate as string,",
-						"          InvoiceMonth as string,",
-						"          InvoiceNumber as string,",
-						"          ShipToCountry as string,",
-						"          EndCustomer as string,",
-						"          GeographicRegionOfEndCustomer as string,",
-						"          PayerAorB as string,",
-						"          PrimaryModuleWorkscope as string,",
-						"          PrimaryModule2Workscope as string,",
-						"          SecondaryModuleWorkscope as string,",
-						"          PrimaryModuleTSN as string,",
-						"          PrimaryModuleCSN as string,",
-						"          PrimaryModuleTSO as string,",
-						"          PrimaryModuleCSO as string,",
-						"          PrimaryModuleTSHSI as string,",
-						"          PrimaryModuleTSLV as string,",
-						"          PrimaryModule2TSN as string,",
-						"          PrimaryModule2CSN as string,",
-						"          PrimaryModule2TSO as string,",
-						"          PrimaryModule2CSO as string,",
-						"          PrimaryModule2TSHSI as string,",
-						"          PrimaryModule2TSLV as string,",
-						"          SecondaryModuleTSN as string,",
-						"          SecondaryModuleCSN as string,",
-						"          SecondaryModuleTSO as string,",
-						"          SecondaryModuleCSO as string,",
-						"          SecondaryModuleTSHSI as string,",
-						"          SecondaryModuleTSLV as string,",
-						"          PrimaryModuleWorkscopeFinal as string,",
-						"          PrimaryModule2WorkscopeFinal as string,",
-						"          SecondaryModuleWorkscopeFinal as string,",
-						"          HSICategory as string,",
-						"          TargetHSIInterval as string,",
-						"          PrimaryModuleOVHCategory as string,",
-						"          PrimaryModuleTargetTBO as string,",
-						"          PrimaryModule2OVHCategory as string,",
-						"          PrimaryModule2TargetTBO as string,",
-						"          SecondaryModuleOVHCategory as string,",
-						"          SecondaryModuleTargetTBO as string,",
-						"          PreviousEventHistory as string",
-						"     ),",
-						"     allowSchemaDrift: true,",
-						"     validateSchema: false,",
-						"     ignoreNoFilesFound: false) ~> source2",
-						"source1, source2 join(source1@SalesOrderNumber == source2@SalesOrderNumber",
-						"     && source1@EngineModel == source2@EngineModel,",
-						"     joinType:'inner',",
-						"     matchType:'exact',",
-						"     ignoreSpaces: false,",
-						"     broadcast: 'auto')~> join1",
-						"join1 sink(allowSchemaDrift: true,",
-						"     validateSchema: false,",
-						"     umask: 0022,",
-						"     preCommands: [],",
-						"     postCommands: [],",
-						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true) ~> sink1"
-					]
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/Parts_DOF')]",
-				"[concat(variables('factoryId'), '/datasets/NewTest')]",
 				"[concat(variables('factoryId'), '/datasets/UseCase1')]"
 			]
 		}
