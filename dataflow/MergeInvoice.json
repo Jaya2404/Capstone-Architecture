@@ -52,9 +52,6 @@
 			"transformations": [
 				{
 					"name": "InvoiceUnion"
-				},
-				{
-					"name": "select1"
 				}
 			],
 			"scriptLines": [
@@ -364,16 +361,7 @@
 				"     validateSchema: true,",
 				"     ignoreNoFilesFound: false) ~> DOFInvoice",
 				"PW127, TFAN, PW1XX, PW150, DOFInvoice union(byName: true)~> InvoiceUnion",
-				"InvoiceUnion select(mapColumn(",
-				"          EngineModel,",
-				"          SalesOrderNumber,",
-				"          PrimaryWorkscope = PrimaryModuleWorkscopeFinal,",
-				"          SecondaryWorkscope = SecondaryModuleWorkscopeFinal",
-				"     ),",
-				"     partitionBy('hash', 1),",
-				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select1",
-				"select1 sink(allowSchemaDrift: true,",
+				"InvoiceUnion sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          EngineModel as string,",

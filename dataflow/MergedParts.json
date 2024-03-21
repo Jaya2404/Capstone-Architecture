@@ -52,9 +52,6 @@
 			"transformations": [
 				{
 					"name": "PartsUnion"
-				},
-				{
-					"name": "select1"
 				}
 			],
 			"scriptLines": [
@@ -208,22 +205,7 @@
 				"     validateSchema: true,",
 				"     ignoreNoFilesFound: false) ~> PartsDOF",
 				"PartsTFAN, PartsPW150, PartsPW1XX, PartsPW127, PartsDOF union(byName: true)~> PartsUnion",
-				"PartsUnion select(mapColumn(",
-				"          EngineModel,",
-				"          {LCF Parts} = Plant,",
-				"          SalesOrderNumber,",
-				"          ModuleType = EngineModule,",
-				"          MaterialInstalled,",
-				"          MaterialDescription,",
-				"          UnitPrice,",
-				"          Quantity,",
-				"          FinalPrice = TotalInvoicePriceEscalatedAtPPHRateOrDiscount,",
-				"          ExtendedList",
-				"     ),",
-				"     partitionBy('hash', 1),",
-				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select1",
-				"select1 sink(allowSchemaDrift: true,",
+				"PartsUnion sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          EngineModel as string,",
