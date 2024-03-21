@@ -2861,7 +2861,7 @@
 						"     validateSchema: false,",
 						"     ignoreNoFilesFound: false) ~> InvoiceMerged",
 						"PartsMerged, InvoiceMerged join(PartsMerged@EngineModel == InvoiceMerged@EngineModel,",
-						"     joinType:'left',",
+						"     joinType:'inner',",
 						"     matchType:'exact',",
 						"     ignoreSpaces: false,",
 						"     broadcast: 'auto')~> join1",
