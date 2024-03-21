@@ -65,15 +65,7 @@
 				},
 				"schema": [
 					{
-						"name": "PartDetailsId",
-						"type": "String"
-					},
-					{
 						"name": "EngineModel",
-						"type": "String"
-					},
-					{
-						"name": "Plant",
 						"type": "String"
 					},
 					{
@@ -81,99 +73,11 @@
 						"type": "String"
 					},
 					{
-						"name": "InvoiceDate",
+						"name": "PrimaryWorkscope",
 						"type": "String"
 					},
 					{
-						"name": "InvoiceMonth",
-						"type": "String"
-					},
-					{
-						"name": "InvoiceYear",
-						"type": "String"
-					},
-					{
-						"name": "EndCustomerARCode",
-						"type": "String"
-					},
-					{
-						"name": "EndCustomerName",
-						"type": "String"
-					},
-					{
-						"name": "PayerARCode",
-						"type": "String"
-					},
-					{
-						"name": "PayerName",
-						"type": "String"
-					},
-					{
-						"name": "EngineModule",
-						"type": "String"
-					},
-					{
-						"name": "InvoiceRecordType",
-						"type": "String"
-					},
-					{
-						"name": "MaterialInstalled",
-						"type": "String"
-					},
-					{
-						"name": "MaterialDescription",
-						"type": "String"
-					},
-					{
-						"name": "MaterialGroup",
-						"type": "String"
-					},
-					{
-						"name": "PartRemovalReason",
-						"type": "String"
-					},
-					{
-						"name": "IWBEnginePosition",
-						"type": "String"
-					},
-					{
-						"name": "MajorParts",
-						"type": "String"
-					},
-					{
-						"name": "PricingMonth",
-						"type": "String"
-					},
-					{
-						"name": "UnitPrice",
-						"type": "String"
-					},
-					{
-						"name": "Quantity",
-						"type": "String"
-					},
-					{
-						"name": "TotalInvoicePriceEscalatedAtPPHRateOrDiscount",
-						"type": "String"
-					},
-					{
-						"name": "ExtendedList",
-						"type": "String"
-					},
-					{
-						"name": "InvoiceNumber",
-						"type": "String"
-					},
-					{
-						"name": "EndCustomer",
-						"type": "String"
-					},
-					{
-						"name": "EndCustomerARCode8",
-						"type": "String"
-					},
-					{
-						"name": "EndCustomerARCode10",
+						"name": "SecondaryWorkscope",
 						"type": "String"
 					}
 				]
@@ -208,7 +112,48 @@
 					"firstRowAsHeader": true,
 					"quoteChar": "\""
 				},
-				"schema": []
+				"schema": [
+					{
+						"name": "EngineModel",
+						"type": "String"
+					},
+					{
+						"name": "LCF Part",
+						"type": "String"
+					},
+					{
+						"name": "SalesOrderNumber",
+						"type": "String"
+					},
+					{
+						"name": "ModuleType",
+						"type": "String"
+					},
+					{
+						"name": "MaterialInstalled",
+						"type": "String"
+					},
+					{
+						"name": "MaterialDescription",
+						"type": "String"
+					},
+					{
+						"name": "UnitPrice",
+						"type": "String"
+					},
+					{
+						"name": "Quantity",
+						"type": "String"
+					},
+					{
+						"name": "FinalPrice",
+						"type": "String"
+					},
+					{
+						"name": "ExtendedList",
+						"type": "String"
+					}
+				]
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
@@ -242,7 +187,7 @@
 				},
 				"schema": [
 					{
-						"name": "PartDetailsId",
+						"name": "InvoiceFrontPageId",
 						"type": "String"
 					},
 					{
@@ -250,11 +195,59 @@
 						"type": "String"
 					},
 					{
-						"name": "Plant",
+						"name": "SalesOrderNumber",
 						"type": "String"
 					},
 					{
-						"name": "SalesOrderNumber",
+						"name": "OtherDocuments",
+						"type": "String"
+					},
+					{
+						"name": "SDPlant",
+						"type": "String"
+					},
+					{
+						"name": "PricingDate",
+						"type": "String"
+					},
+					{
+						"name": "PrimaryModuleType",
+						"type": "String"
+					},
+					{
+						"name": "PrimaryModule2Type",
+						"type": "String"
+					},
+					{
+						"name": "SecondaryModuleType",
+						"type": "String"
+					},
+					{
+						"name": "PrimaryModuleSerialNumber",
+						"type": "String"
+					},
+					{
+						"name": "PrimaryModule2SerialNumber",
+						"type": "String"
+					},
+					{
+						"name": "SecondaryModuleSerialNumber",
+						"type": "String"
+					},
+					{
+						"name": "ReasonForRemovalBW",
+						"type": "String"
+					},
+					{
+						"name": "ReasonForRemovalAdditionalInfo",
+						"type": "String"
+					},
+					{
+						"name": "ShopEventDate",
+						"type": "String"
+					},
+					{
+						"name": "ShippedDate",
 						"type": "String"
 					},
 					{
@@ -266,75 +259,155 @@
 						"type": "String"
 					},
 					{
-						"name": "InvoiceYear",
+						"name": "InvoiceNumber",
 						"type": "String"
 					},
 					{
-						"name": "EndCustomerARCode",
+						"name": "ShipToCountry",
 						"type": "String"
 					},
 					{
-						"name": "EndCustomerName",
+						"name": "EndCustomer",
 						"type": "String"
 					},
 					{
-						"name": "PayerARCode",
+						"name": "GeographicRegionOfEndCustomer",
 						"type": "String"
 					},
 					{
-						"name": "PayerName",
+						"name": "PayerAorB",
 						"type": "String"
 					},
 					{
-						"name": "EngineModule",
+						"name": "PrimaryModuleWorkscope",
 						"type": "String"
 					},
 					{
-						"name": "InvoiceRecordType",
+						"name": "PrimaryModule2Workscope",
 						"type": "String"
 					},
 					{
-						"name": "MaterialInstalled",
+						"name": "SecondaryModuleWorkscope",
 						"type": "String"
 					},
 					{
-						"name": "MaterialDescription",
+						"name": "PrimaryModuleTSN",
 						"type": "String"
 					},
 					{
-						"name": "MaterialGroup",
+						"name": "PrimaryModuleCSN",
 						"type": "String"
 					},
 					{
-						"name": "PartRemovalReason",
+						"name": "PrimaryModuleTSO",
 						"type": "String"
 					},
 					{
-						"name": "IWBEnginePosition",
+						"name": "PrimaryModuleCSO",
 						"type": "String"
 					},
 					{
-						"name": "MajorParts",
+						"name": "PrimaryModuleTSHSI",
 						"type": "String"
 					},
 					{
-						"name": "PricingMonth",
+						"name": "PrimaryModuleTSLV",
 						"type": "String"
 					},
 					{
-						"name": "UnitPrice",
+						"name": "PrimaryModule2TSN",
 						"type": "String"
 					},
 					{
-						"name": "Quantity",
+						"name": "PrimaryModule2CSN",
 						"type": "String"
 					},
 					{
-						"name": "TotalInvoicePriceEscalatedAtPPHRateOrDiscount",
+						"name": "PrimaryModule2TSO",
 						"type": "String"
 					},
 					{
-						"name": "ExtendedList",
+						"name": "PrimaryModule2CSO",
+						"type": "String"
+					},
+					{
+						"name": "PrimaryModule2TSHSI",
+						"type": "String"
+					},
+					{
+						"name": "PrimaryModule2TSLV",
+						"type": "String"
+					},
+					{
+						"name": "SecondaryModuleTSN",
+						"type": "String"
+					},
+					{
+						"name": "SecondaryModuleCSN",
+						"type": "String"
+					},
+					{
+						"name": "SecondaryModuleTSO",
+						"type": "String"
+					},
+					{
+						"name": "SecondaryModuleCSO",
+						"type": "String"
+					},
+					{
+						"name": "SecondaryModuleTSHSI",
+						"type": "String"
+					},
+					{
+						"name": "SecondaryModuleTSLV",
+						"type": "String"
+					},
+					{
+						"name": "PrimaryModuleWorkscopeFinal",
+						"type": "String"
+					},
+					{
+						"name": "PrimaryModule2WorkscopeFinal",
+						"type": "String"
+					},
+					{
+						"name": "SecondaryModuleWorkscopeFinal",
+						"type": "String"
+					},
+					{
+						"name": "HSICategory",
+						"type": "String"
+					},
+					{
+						"name": "TargetHSIInterval",
+						"type": "String"
+					},
+					{
+						"name": "PrimaryModuleOVHCategory",
+						"type": "String"
+					},
+					{
+						"name": "PrimaryModuleTargetTBO",
+						"type": "String"
+					},
+					{
+						"name": "PrimaryModule2OVHCategory",
+						"type": "String"
+					},
+					{
+						"name": "PrimaryModule2TargetTBO",
+						"type": "String"
+					},
+					{
+						"name": "SecondaryModuleOVHCategory",
+						"type": "String"
+					},
+					{
+						"name": "SecondaryModuleTargetTBO",
+						"type": "String"
+					},
+					{
+						"name": "PreviousEventHistory",
 						"type": "String"
 					}
 				]
@@ -2096,6 +2169,13 @@
 								"type": "DatasetReference"
 							},
 							"name": "TFAN"
+						},
+						{
+							"dataset": {
+								"referenceName": "NewTest",
+								"type": "DatasetReference"
+							},
+							"name": "DOFInvoice"
 						}
 					],
 					"sinks": [
@@ -2360,7 +2440,68 @@
 						"     allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     ignoreNoFilesFound: false) ~> TFAN",
-						"PW127, TFAN, PW1XX, PW150 union(byName: true)~> InvoiceUnion",
+						"source(output(",
+						"          InvoiceFrontPageId as string,",
+						"          EngineModel as string,",
+						"          SalesOrderNumber as string,",
+						"          OtherDocuments as string,",
+						"          SDPlant as string,",
+						"          PricingDate as string,",
+						"          PrimaryModuleType as string,",
+						"          PrimaryModule2Type as string,",
+						"          SecondaryModuleType as string,",
+						"          PrimaryModuleSerialNumber as string,",
+						"          PrimaryModule2SerialNumber as string,",
+						"          SecondaryModuleSerialNumber as string,",
+						"          ReasonForRemovalBW as string,",
+						"          ReasonForRemovalAdditionalInfo as string,",
+						"          ShopEventDate as string,",
+						"          ShippedDate as string,",
+						"          InvoiceDate as string,",
+						"          InvoiceMonth as string,",
+						"          InvoiceNumber as string,",
+						"          ShipToCountry as string,",
+						"          EndCustomer as string,",
+						"          GeographicRegionOfEndCustomer as string,",
+						"          PayerAorB as string,",
+						"          PrimaryModuleWorkscope as string,",
+						"          PrimaryModule2Workscope as string,",
+						"          SecondaryModuleWorkscope as string,",
+						"          PrimaryModuleTSN as string,",
+						"          PrimaryModuleCSN as string,",
+						"          PrimaryModuleTSO as string,",
+						"          PrimaryModuleCSO as string,",
+						"          PrimaryModuleTSHSI as string,",
+						"          PrimaryModuleTSLV as string,",
+						"          PrimaryModule2TSN as string,",
+						"          PrimaryModule2CSN as string,",
+						"          PrimaryModule2TSO as string,",
+						"          PrimaryModule2CSO as string,",
+						"          PrimaryModule2TSHSI as string,",
+						"          PrimaryModule2TSLV as string,",
+						"          SecondaryModuleTSN as string,",
+						"          SecondaryModuleCSN as string,",
+						"          SecondaryModuleTSO as string,",
+						"          SecondaryModuleCSO as string,",
+						"          SecondaryModuleTSHSI as string,",
+						"          SecondaryModuleTSLV as string,",
+						"          PrimaryModuleWorkscopeFinal as string,",
+						"          PrimaryModule2WorkscopeFinal as string,",
+						"          SecondaryModuleWorkscopeFinal as string,",
+						"          HSICategory as string,",
+						"          TargetHSIInterval as string,",
+						"          PrimaryModuleOVHCategory as string,",
+						"          PrimaryModuleTargetTBO as string,",
+						"          PrimaryModule2OVHCategory as string,",
+						"          PrimaryModule2TargetTBO as string,",
+						"          SecondaryModuleOVHCategory as string,",
+						"          SecondaryModuleTargetTBO as string,",
+						"          PreviousEventHistory as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: true,",
+						"     ignoreNoFilesFound: false) ~> DOFInvoice",
+						"PW127, TFAN, PW1XX, PW150, DOFInvoice union(byName: true)~> InvoiceUnion",
 						"InvoiceUnion select(mapColumn(",
 						"          EngineModel,",
 						"          SalesOrderNumber,",
@@ -2373,34 +2514,10 @@
 						"select1 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     input(",
-						"          PartDetailsId as string,",
 						"          EngineModel as string,",
-						"          Plant as string,",
 						"          SalesOrderNumber as string,",
-						"          InvoiceDate as string,",
-						"          InvoiceMonth as string,",
-						"          InvoiceYear as string,",
-						"          EndCustomerARCode as string,",
-						"          EndCustomerName as string,",
-						"          PayerARCode as string,",
-						"          PayerName as string,",
-						"          EngineModule as string,",
-						"          InvoiceRecordType as string,",
-						"          MaterialInstalled as string,",
-						"          MaterialDescription as string,",
-						"          MaterialGroup as string,",
-						"          PartRemovalReason as string,",
-						"          IWBEnginePosition as string,",
-						"          MajorParts as string,",
-						"          PricingMonth as string,",
-						"          UnitPrice as string,",
-						"          Quantity as string,",
-						"          TotalInvoicePriceEscalatedAtPPHRateOrDiscount as string,",
-						"          ExtendedList as string,",
-						"          InvoiceNumber as string,",
-						"          EndCustomer as string,",
-						"          EndCustomerARCode8 as string,",
-						"          EndCustomerARCode10 as string",
+						"          PrimaryWorkscope as string,",
+						"          SecondaryWorkscope as string",
 						"     ),",
 						"     partitionFileNames:['MergedInvoice'],",
 						"     umask: 0022,",
@@ -2417,6 +2534,7 @@
 				"[concat(variables('factoryId'), '/datasets/PW150')]",
 				"[concat(variables('factoryId'), '/datasets/PW1XX')]",
 				"[concat(variables('factoryId'), '/datasets/TFAN')]",
+				"[concat(variables('factoryId'), '/datasets/NewTest')]",
 				"[concat(variables('factoryId'), '/datasets/MergedInvoice')]"
 			]
 		},
@@ -2455,6 +2573,13 @@
 								"type": "DatasetReference"
 							},
 							"name": "PartsPW150"
+						},
+						{
+							"dataset": {
+								"referenceName": "Parts_DOF",
+								"type": "DatasetReference"
+							},
+							"name": "PartsDOF"
 						}
 					],
 					"sinks": [
@@ -2595,10 +2720,39 @@
 						"     allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     ignoreNoFilesFound: false) ~> PartsPW150",
-						"PartsTFAN, PartsPW150, PartsPW1XX, PartsPW127 union(byName: true)~> PartsUnion",
+						"source(output(",
+						"          PartDetailsId as string,",
+						"          EngineModel as string,",
+						"          Plant as string,",
+						"          SalesOrderNumber as string,",
+						"          InvoiceDate as string,",
+						"          InvoiceMonth as string,",
+						"          InvoiceYear as string,",
+						"          EndCustomerARCode as string,",
+						"          EndCustomerName as string,",
+						"          PayerARCode as string,",
+						"          PayerName as string,",
+						"          EngineModule as string,",
+						"          InvoiceRecordType as string,",
+						"          MaterialInstalled as string,",
+						"          MaterialDescription as string,",
+						"          MaterialGroup as string,",
+						"          PartRemovalReason as string,",
+						"          IWBEnginePosition as string,",
+						"          MajorParts as string,",
+						"          PricingMonth as string,",
+						"          UnitPrice as float,",
+						"          Quantity as float,",
+						"          TotalInvoicePriceEscalatedAtPPHRateOrDiscount as float,",
+						"          ExtendedList as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: true,",
+						"     ignoreNoFilesFound: false) ~> PartsDOF",
+						"PartsTFAN, PartsPW150, PartsPW1XX, PartsPW127, PartsDOF union(byName: true)~> PartsUnion",
 						"PartsUnion select(mapColumn(",
 						"          EngineModel,",
-						"          {LCF Part} = Plant,",
+						"          {LCF Parts} = Plant,",
 						"          SalesOrderNumber,",
 						"          ModuleType = EngineModule,",
 						"          MaterialInstalled,",
@@ -2613,6 +2767,18 @@
 						"     skipDuplicateMapOutputs: true) ~> select1",
 						"select1 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
+						"     input(",
+						"          EngineModel as string,",
+						"          {LCF Part} as string,",
+						"          SalesOrderNumber as string,",
+						"          ModuleType as string,",
+						"          MaterialInstalled as string,",
+						"          MaterialDescription as string,",
+						"          UnitPrice as string,",
+						"          Quantity as string,",
+						"          FinalPrice as string,",
+						"          ExtendedList as string",
+						"     ),",
 						"     partitionFileNames:['MergedParts'],",
 						"     umask: 0022,",
 						"     preCommands: [],",
@@ -2628,7 +2794,93 @@
 				"[concat(variables('factoryId'), '/datasets/Parts_PW1XX')]",
 				"[concat(variables('factoryId'), '/datasets/Parts_PW127')]",
 				"[concat(variables('factoryId'), '/datasets/Parts_PW150')]",
+				"[concat(variables('factoryId'), '/datasets/Parts_DOF')]",
 				"[concat(variables('factoryId'), '/datasets/MergedParts')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/UseCase1')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "MergedParts",
+								"type": "DatasetReference"
+							},
+							"name": "PartsMerged"
+						},
+						{
+							"dataset": {
+								"referenceName": "MergedInvoice",
+								"type": "DatasetReference"
+							},
+							"name": "InvoiceMerged"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "UseCase1",
+								"type": "DatasetReference"
+							},
+							"name": "UseCase1"
+						}
+					],
+					"transformations": [
+						{
+							"name": "join1"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          EngineModel as string,",
+						"          {LCF Part} as string,",
+						"          SalesOrderNumber as string,",
+						"          ModuleType as string,",
+						"          MaterialInstalled as string,",
+						"          MaterialDescription as string,",
+						"          UnitPrice as string,",
+						"          Quantity as string,",
+						"          FinalPrice as string,",
+						"          ExtendedList as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> PartsMerged",
+						"source(output(",
+						"          EngineModel as string,",
+						"          SalesOrderNumber as string,",
+						"          PrimaryWorkscope as string,",
+						"          SecondaryWorkscope as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> InvoiceMerged",
+						"PartsMerged, InvoiceMerged join(PartsMerged@EngineModel == InvoiceMerged@EngineModel,",
+						"     joinType:'left',",
+						"     matchType:'exact',",
+						"     ignoreSpaces: false,",
+						"     broadcast: 'auto')~> join1",
+						"join1 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     partitionFileNames:['UseCase1'],",
+						"     umask: 0022,",
+						"     preCommands: [],",
+						"     postCommands: [],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     partitionBy('hash', 1)) ~> UseCase1"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/MergedParts')]",
+				"[concat(variables('factoryId'), '/datasets/MergedInvoice')]",
+				"[concat(variables('factoryId'), '/datasets/UseCase1')]"
 			]
 		},
 		{
@@ -2659,6 +2911,7 @@
 									"PW150": {},
 									"PW1XX": {},
 									"TFAN": {},
+									"DOFInvoice": {},
 									"MergedInvoice": {}
 								}
 							},
@@ -2708,6 +2961,7 @@
 									"PartsPW1XX": {},
 									"PartsPW127": {},
 									"PartsPW150": {},
+									"PartsDOF": {},
 									"MergedParts": {}
 								}
 							},
@@ -2727,6 +2981,53 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/dataflows/MergedParts')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline3')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "UseCase1",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "UseCase1",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"PartsMerged": {},
+									"InvoiceMerged": {},
+									"UseCase1": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 32,
+								"computeType": "MemoryOptimized"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/UseCase1')]"
 			]
 		}
 	]
