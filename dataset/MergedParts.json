@@ -22,6 +22,47 @@
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "EngineModel",
+				"type": "String"
+			},
+			{
+				"name": "LCF Part",
+				"type": "String"
+			},
+			{
+				"name": "SalesOrderNumber",
+				"type": "String"
+			},
+			{
+				"name": "ModuleType",
+				"type": "String"
+			},
+			{
+				"name": "MaterialInstalled",
+				"type": "String"
+			},
+			{
+				"name": "MaterialDescription",
+				"type": "String"
+			},
+			{
+				"name": "UnitPrice",
+				"type": "String"
+			},
+			{
+				"name": "Quantity",
+				"type": "String"
+			},
+			{
+				"name": "FinalPrice",
+				"type": "String"
+			},
+			{
+				"name": "ExtendedList",
+				"type": "String"
+			}
+		]
 	}
 }

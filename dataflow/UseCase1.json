@@ -1,0 +1,78 @@
+{
+	"name": "UseCase1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "MergedParts",
+						"type": "DatasetReference"
+					},
+					"name": "PartsMerged"
+				},
+				{
+					"dataset": {
+						"referenceName": "MergedInvoice",
+						"type": "DatasetReference"
+					},
+					"name": "InvoiceMerged"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "UseCase1",
+						"type": "DatasetReference"
+					},
+					"name": "UseCase1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "join1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          EngineModel as string,",
+				"          {LCF Part} as string,",
+				"          SalesOrderNumber as string,",
+				"          ModuleType as string,",
+				"          MaterialInstalled as string,",
+				"          MaterialDescription as string,",
+				"          UnitPrice as string,",
+				"          Quantity as string,",
+				"          FinalPrice as string,",
+				"          ExtendedList as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> PartsMerged",
+				"source(output(",
+				"          EngineModel as string,",
+				"          SalesOrderNumber as string,",
+				"          PrimaryWorkscope as string,",
+				"          SecondaryWorkscope as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> InvoiceMerged",
+				"PartsMerged, InvoiceMerged join(PartsMerged@EngineModel == InvoiceMerged@EngineModel,",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"join1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['UseCase1'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> UseCase1"
+			]
+		}
+	}
+}

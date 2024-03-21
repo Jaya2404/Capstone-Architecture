@@ -24,7 +24,7 @@
 		},
 		"schema": [
 			{
-				"name": "PartDetailsId",
+				"name": "InvoiceFrontPageId",
 				"type": "String"
 			},
 			{
@@ -32,11 +32,59 @@
 				"type": "String"
 			},
 			{
-				"name": "Plant",
+				"name": "SalesOrderNumber",
 				"type": "String"
 			},
 			{
-				"name": "SalesOrderNumber",
+				"name": "OtherDocuments",
+				"type": "String"
+			},
+			{
+				"name": "SDPlant",
+				"type": "String"
+			},
+			{
+				"name": "PricingDate",
+				"type": "String"
+			},
+			{
+				"name": "PrimaryModuleType",
+				"type": "String"
+			},
+			{
+				"name": "PrimaryModule2Type",
+				"type": "String"
+			},
+			{
+				"name": "SecondaryModuleType",
+				"type": "String"
+			},
+			{
+				"name": "PrimaryModuleSerialNumber",
+				"type": "String"
+			},
+			{
+				"name": "PrimaryModule2SerialNumber",
+				"type": "String"
+			},
+			{
+				"name": "SecondaryModuleSerialNumber",
+				"type": "String"
+			},
+			{
+				"name": "ReasonForRemovalBW",
+				"type": "String"
+			},
+			{
+				"name": "ReasonForRemovalAdditionalInfo",
+				"type": "String"
+			},
+			{
+				"name": "ShopEventDate",
+				"type": "String"
+			},
+			{
+				"name": "ShippedDate",
 				"type": "String"
 			},
 			{
@@ -48,75 +96,155 @@
 				"type": "String"
 			},
 			{
-				"name": "InvoiceYear",
+				"name": "InvoiceNumber",
 				"type": "String"
 			},
 			{
-				"name": "EndCustomerARCode",
+				"name": "ShipToCountry",
 				"type": "String"
 			},
 			{
-				"name": "EndCustomerName",
+				"name": "EndCustomer",
 				"type": "String"
 			},
 			{
-				"name": "PayerARCode",
+				"name": "GeographicRegionOfEndCustomer",
 				"type": "String"
 			},
 			{
-				"name": "PayerName",
+				"name": "PayerAorB",
 				"type": "String"
 			},
 			{
-				"name": "EngineModule",
+				"name": "PrimaryModuleWorkscope",
 				"type": "String"
 			},
 			{
-				"name": "InvoiceRecordType",
+				"name": "PrimaryModule2Workscope",
 				"type": "String"
 			},
 			{
-				"name": "MaterialInstalled",
+				"name": "SecondaryModuleWorkscope",
 				"type": "String"
 			},
 			{
-				"name": "MaterialDescription",
+				"name": "PrimaryModuleTSN",
 				"type": "String"
 			},
 			{
-				"name": "MaterialGroup",
+				"name": "PrimaryModuleCSN",
 				"type": "String"
 			},
 			{
-				"name": "PartRemovalReason",
+				"name": "PrimaryModuleTSO",
 				"type": "String"
 			},
 			{
-				"name": "IWBEnginePosition",
+				"name": "PrimaryModuleCSO",
 				"type": "String"
 			},
 			{
-				"name": "MajorParts",
+				"name": "PrimaryModuleTSHSI",
 				"type": "String"
 			},
 			{
-				"name": "PricingMonth",
+				"name": "PrimaryModuleTSLV",
 				"type": "String"
 			},
 			{
-				"name": "UnitPrice",
+				"name": "PrimaryModule2TSN",
 				"type": "String"
 			},
 			{
-				"name": "Quantity",
+				"name": "PrimaryModule2CSN",
 				"type": "String"
 			},
 			{
-				"name": "TotalInvoicePriceEscalatedAtPPHRateOrDiscount",
+				"name": "PrimaryModule2TSO",
 				"type": "String"
 			},
 			{
-				"name": "ExtendedList",
+				"name": "PrimaryModule2CSO",
+				"type": "String"
+			},
+			{
+				"name": "PrimaryModule2TSHSI",
+				"type": "String"
+			},
+			{
+				"name": "PrimaryModule2TSLV",
+				"type": "String"
+			},
+			{
+				"name": "SecondaryModuleTSN",
+				"type": "String"
+			},
+			{
+				"name": "SecondaryModuleCSN",
+				"type": "String"
+			},
+			{
+				"name": "SecondaryModuleTSO",
+				"type": "String"
+			},
+			{
+				"name": "SecondaryModuleCSO",
+				"type": "String"
+			},
+			{
+				"name": "SecondaryModuleTSHSI",
+				"type": "String"
+			},
+			{
+				"name": "SecondaryModuleTSLV",
+				"type": "String"
+			},
+			{
+				"name": "PrimaryModuleWorkscopeFinal",
+				"type": "String"
+			},
+			{
+				"name": "PrimaryModule2WorkscopeFinal",
+				"type": "String"
+			},
+			{
+				"name": "SecondaryModuleWorkscopeFinal",
+				"type": "String"
+			},
+			{
+				"name": "HSICategory",
+				"type": "String"
+			},
+			{
+				"name": "TargetHSIInterval",
+				"type": "String"
+			},
+			{
+				"name": "PrimaryModuleOVHCategory",
+				"type": "String"
+			},
+			{
+				"name": "PrimaryModuleTargetTBO",
+				"type": "String"
+			},
+			{
+				"name": "PrimaryModule2OVHCategory",
+				"type": "String"
+			},
+			{
+				"name": "PrimaryModule2TargetTBO",
+				"type": "String"
+			},
+			{
+				"name": "SecondaryModuleOVHCategory",
+				"type": "String"
+			},
+			{
+				"name": "SecondaryModuleTargetTBO",
+				"type": "String"
+			},
+			{
+				"name": "PreviousEventHistory",
 				"type": "String"
 			}
 		]

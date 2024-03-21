@@ -24,15 +24,7 @@
 		},
 		"schema": [
 			{
-				"name": "PartDetailsId",
-				"type": "String"
-			},
-			{
 				"name": "EngineModel",
-				"type": "String"
-			},
-			{
-				"name": "Plant",
 				"type": "String"
 			},
 			{
@@ -40,99 +32,11 @@
 				"type": "String"
 			},
 			{
-				"name": "InvoiceDate",
+				"name": "PrimaryWorkscope",
 				"type": "String"
 			},
 			{
-				"name": "InvoiceMonth",
-				"type": "String"
-			},
-			{
-				"name": "InvoiceYear",
-				"type": "String"
-			},
-			{
-				"name": "EndCustomerARCode",
-				"type": "String"
-			},
-			{
-				"name": "EndCustomerName",
-				"type": "String"
-			},
-			{
-				"name": "PayerARCode",
-				"type": "String"
-			},
-			{
-				"name": "PayerName",
-				"type": "String"
-			},
-			{
-				"name": "EngineModule",
-				"type": "String"
-			},
-			{
-				"name": "InvoiceRecordType",
-				"type": "String"
-			},
-			{
-				"name": "MaterialInstalled",
-				"type": "String"
-			},
-			{
-				"name": "MaterialDescription",
-				"type": "String"
-			},
-			{
-				"name": "MaterialGroup",
-				"type": "String"
-			},
-			{
-				"name": "PartRemovalReason",
-				"type": "String"
-			},
-			{
-				"name": "IWBEnginePosition",
-				"type": "String"
-			},
-			{
-				"name": "MajorParts",
-				"type": "String"
-			},
-			{
-				"name": "PricingMonth",
-				"type": "String"
-			},
-			{
-				"name": "UnitPrice",
-				"type": "String"
-			},
-			{
-				"name": "Quantity",
-				"type": "String"
-			},
-			{
-				"name": "TotalInvoicePriceEscalatedAtPPHRateOrDiscount",
-				"type": "String"
-			},
-			{
-				"name": "ExtendedList",
-				"type": "String"
-			},
-			{
-				"name": "InvoiceNumber",
-				"type": "String"
-			},
-			{
-				"name": "EndCustomer",
-				"type": "String"
-			},
-			{
-				"name": "EndCustomerARCode8",
-				"type": "String"
-			},
-			{
-				"name": "EndCustomerARCode10",
+				"name": "SecondaryWorkscope",
 				"type": "String"
 			}
 		]
