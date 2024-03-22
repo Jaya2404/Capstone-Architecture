@@ -11,15 +11,151 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1'"
 		},
+		"AzureDatabricks1_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks1'"
+		},
+		"AzureDatabricksDeltaLake1_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'AzureDatabricksDeltaLake1'"
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://stbusa693prattwhitney.dfs.core.windows.net"
+		},
+		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0321-151041-8siswhbs"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://mlwbusa693prat5682493280.vault.azure.net/"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/UseCase1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "UseCase1",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "MergeInvoice",
+								"dependencyConditions": [
+									"Completed"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Users/jaya.chaturvedi@mail.mcgill.ca/UseCase1_Test"
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureDatabricks1",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "MergedParts",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "MergedParts",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"PartsTFAN": {},
+									"PartsPW1XX": {},
+									"PartsPW127": {},
+									"PartsPW150": {},
+									"PartsDOF": {},
+									"MergedParts": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					},
+					{
+						"name": "MergeInvoice",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [
+							{
+								"activity": "MergedParts",
+								"dependencyConditions": [
+									"Completed"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "MergeInvoice",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"PW127": {},
+									"PW150": {},
+									"PW1XX": {},
+									"TFAN": {},
+									"DOFInvoice": {},
+									"MergedInvoice": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks1')]",
+				"[concat(variables('factoryId'), '/dataflows/MergedParts')]",
+				"[concat(variables('factoryId'), '/dataflows/MergeInvoice')]"
+			]
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
@@ -147,8 +283,7 @@
 									"source1": {},
 									"source2": {},
 									"UseCase1": {}
-								},
-								"linkedServiceParameters": {}
+								}
 							},
 							"staging": {},
 							"compute": {
@@ -2336,6 +2471,55 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureDatabricks1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDatabricks",
+				"typeProperties": {
+					"domain": "https://adb-4634864076059286.6.azuredatabricks.net",
+					"accessToken": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDatabricks1_accessToken')]"
+					},
+					"existingClusterId": "[parameters('AzureDatabricks1_properties_typeProperties_existingClusterId')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDatabricksDeltaLake1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDatabricksDeltaLake",
+				"typeProperties": {
+					"domain": "https://adb-4634864076059286.6.azuredatabricks.net",
+					"clusterId": "0321-151041-8siswhbs",
+					"accessToken": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDatabricksDeltaLake1_accessToken')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureKeyVault1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/MergeInvoice')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
@@ -2391,9 +2575,6 @@
 					"transformations": [
 						{
 							"name": "InvoiceUnion"
-						},
-						{
-							"name": "select1"
 						}
 					],
 					"scriptLines": [
@@ -2703,16 +2884,7 @@
 						"     validateSchema: true,",
 						"     ignoreNoFilesFound: false) ~> DOFInvoice",
 						"PW127, TFAN, PW1XX, PW150, DOFInvoice union(byName: true)~> InvoiceUnion",
-						"InvoiceUnion select(mapColumn(",
-						"          EngineModel,",
-						"          SalesOrderNumber,",
-						"          PrimaryWorkscope = PrimaryModuleWorkscopeFinal,",
-						"          SecondaryWorkscope = SecondaryModuleWorkscopeFinal",
-						"     ),",
-						"     partitionBy('hash', 1),",
-						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true) ~> select1",
-						"select1 sink(allowSchemaDrift: true,",
+						"InvoiceUnion sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     input(",
 						"          EngineModel as string,",
@@ -2795,9 +2967,6 @@
 					"transformations": [
 						{
 							"name": "PartsUnion"
-						},
-						{
-							"name": "select1"
 						}
 					],
 					"scriptLines": [
@@ -2951,22 +3120,7 @@
 						"     validateSchema: true,",
 						"     ignoreNoFilesFound: false) ~> PartsDOF",
 						"PartsTFAN, PartsPW150, PartsPW1XX, PartsPW127, PartsDOF union(byName: true)~> PartsUnion",
-						"PartsUnion select(mapColumn(",
-						"          EngineModel,",
-						"          {LCF Parts} = Plant,",
-						"          SalesOrderNumber,",
-						"          ModuleType = EngineModule,",
-						"          MaterialInstalled,",
-						"          MaterialDescription,",
-						"          UnitPrice,",
-						"          Quantity,",
-						"          FinalPrice = TotalInvoicePriceEscalatedAtPPHRateOrDiscount,",
-						"          ExtendedList",
-						"     ),",
-						"     partitionBy('hash', 1),",
-						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true) ~> select1",
-						"select1 sink(allowSchemaDrift: true,",
+						"PartsUnion sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     input(",
 						"          EngineModel as string,",
