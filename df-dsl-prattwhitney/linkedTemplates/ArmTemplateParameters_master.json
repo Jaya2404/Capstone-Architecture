@@ -11,17 +11,11 @@
 		"AzureDatabricks1_accessToken": {
 			"value": ""
 		},
-		"AzureDatabricksDeltaLake1_accessToken": {
-			"value": ""
-		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://stbusa693prattwhitney.dfs.core.windows.net"
 		},
 		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
 			"value": "0321-151041-8siswhbs"
-		},
-		"AzureKeyVault1_properties_typeProperties_baseUrl": {
-			"value": "https://mlwbusa693prat5682493280.vault.azure.net/"
 		},
 		"containerUri": {
 			"value": ""

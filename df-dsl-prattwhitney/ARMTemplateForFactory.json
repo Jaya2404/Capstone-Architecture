@@ -15,10 +15,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks1'"
 		},
-		"AzureDatabricksDeltaLake1_accessToken": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accessToken' of 'AzureDatabricksDeltaLake1'"
-		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://stbusa693prattwhitney.dfs.core.windows.net"
@@ -26,10 +22,6 @@
 		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
 			"type": "string",
 			"defaultValue": "0321-151041-8siswhbs"
-		},
-		"AzureKeyVault1_properties_typeProperties_baseUrl": {
-			"type": "string",
-			"defaultValue": "https://mlwbusa693prat5682493280.vault.azure.net/"
 		}
 	},
 	"variables": {
@@ -154,153 +146,6 @@
 				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks1')]",
 				"[concat(variables('factoryId'), '/dataflows/MergedParts')]",
 				"[concat(variables('factoryId'), '/dataflows/MergeInvoice')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "MergeInvoice",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "MergeInvoice",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"PW127": {},
-									"PW150": {},
-									"PW1XX": {},
-									"TFAN": {},
-									"DOFInvoice": {},
-									"MergedInvoice": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 32,
-								"computeType": "MemoryOptimized"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/dataflows/MergeInvoice')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pipeline2')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "MergedParts",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "MergedParts",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"PartsTFAN": {},
-									"PartsPW1XX": {},
-									"PartsPW127": {},
-									"PartsPW150": {},
-									"PartsDOF": {},
-									"MergedParts": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 32,
-								"computeType": "MemoryOptimized"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/dataflows/MergedParts')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pipeline3')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "dataflow1",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "dataflow1",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"source1": {},
-									"source2": {},
-									"UseCase1": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 32,
-								"computeType": "MemoryOptimized"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/dataflows/dataflow1')]"
 			]
 		},
 		{
@@ -2489,37 +2334,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AzureDatabricksDeltaLake1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureDatabricksDeltaLake",
-				"typeProperties": {
-					"domain": "https://adb-4634864076059286.6.azuredatabricks.net",
-					"clusterId": "0321-151041-8siswhbs",
-					"accessToken": {
-						"type": "SecureString",
-						"value": "[parameters('AzureDatabricksDeltaLake1_accessToken')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureKeyVault1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureKeyVault",
-				"typeProperties": {
-					"baseUrl": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/MergeInvoice')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
@@ -3151,107 +2965,6 @@
 				"[concat(variables('factoryId'), '/datasets/Parts_PW150')]",
 				"[concat(variables('factoryId'), '/datasets/Parts_DOF')]",
 				"[concat(variables('factoryId'), '/datasets/MergedParts')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/dataflow1')]",
-			"type": "Microsoft.DataFactory/factories/dataflows",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "MappingDataFlow",
-				"typeProperties": {
-					"sources": [
-						{
-							"dataset": {
-								"referenceName": "MergedParts",
-								"type": "DatasetReference"
-							},
-							"name": "source1"
-						},
-						{
-							"dataset": {
-								"referenceName": "MergedInvoice",
-								"type": "DatasetReference"
-							},
-							"name": "source2"
-						}
-					],
-					"sinks": [
-						{
-							"dataset": {
-								"referenceName": "UseCase1",
-								"type": "DatasetReference"
-							},
-							"name": "UseCase1"
-						}
-					],
-					"transformations": [
-						{
-							"name": "join1"
-						}
-					],
-					"scriptLines": [
-						"source(output(",
-						"          EngineModel as string,",
-						"          {LCF Part} as string,",
-						"          SalesOrderNumber as string,",
-						"          ModuleType as string,",
-						"          MaterialInstalled as string,",
-						"          MaterialDescription as string,",
-						"          UnitPrice as string,",
-						"          Quantity as string,",
-						"          FinalPrice as string,",
-						"          ExtendedList as string",
-						"     ),",
-						"     allowSchemaDrift: true,",
-						"     validateSchema: false,",
-						"     ignoreNoFilesFound: false) ~> source1",
-						"source(output(",
-						"          EngineModel as string,",
-						"          SalesOrderNumber as string,",
-						"          PrimaryWorkscope as string,",
-						"          SecondaryWorkscope as string",
-						"     ),",
-						"     allowSchemaDrift: true,",
-						"     validateSchema: false,",
-						"     ignoreNoFilesFound: false) ~> source2",
-						"source1, source2 join(source1@EngineModel == source2@EngineModel",
-						"     && source1@SalesOrderNumber == source2@SalesOrderNumber,",
-						"     joinType:'inner',",
-						"     matchType:'exact',",
-						"     ignoreSpaces: false,",
-						"     broadcast: 'auto')~> join1",
-						"join1 sink(allowSchemaDrift: true,",
-						"     validateSchema: false,",
-						"     input(",
-						"          EngineModel as string,",
-						"          {LCF Part} as string,",
-						"          SalesOrderNumber as string,",
-						"          ModuleType as string,",
-						"          MaterialInstalled as string,",
-						"          MaterialDescription as string,",
-						"          UnitPrice as string,",
-						"          Quantity as string,",
-						"          FinalPrice as string,",
-						"          ExtendedList as string,",
-						"          {LCF Parts} as string,",
-						"          PrimaryWorkscope as string,",
-						"          SecondaryWorkscope as string",
-						"     ),",
-						"     partitionFileNames:['UseCase1'],",
-						"     umask: 0022,",
-						"     preCommands: [],",
-						"     postCommands: [],",
-						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true,",
-						"     partitionBy('hash', 1)) ~> UseCase1"
-					]
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/MergedParts')]",
-				"[concat(variables('factoryId'), '/datasets/MergedInvoice')]",
-				"[concat(variables('factoryId'), '/datasets/UseCase1')]"
 			]
 		}
 	]
