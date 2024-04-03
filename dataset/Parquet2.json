@@ -1,0 +1,248 @@
+{
+	"name": "Parquet2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "UseCase3"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "MergedParts_UseCase3",
+				"fileSystem": "pwc-transformeddata"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "InvoiceFrontPageId",
+				"type": "UTF8"
+			},
+			{
+				"name": "EngineModel",
+				"type": "UTF8"
+			},
+			{
+				"name": "SalesOrderNumber",
+				"type": "UTF8"
+			},
+			{
+				"name": "OtherDocuments",
+				"type": "UTF8"
+			},
+			{
+				"name": "SDPlant",
+				"type": "UTF8"
+			},
+			{
+				"name": "PricingDate",
+				"type": "DATE"
+			},
+			{
+				"name": "PrimaryModuleType",
+				"type": "UTF8"
+			},
+			{
+				"name": "PrimaryModule2Type",
+				"type": "UTF8"
+			},
+			{
+				"name": "SecondaryModuleType",
+				"type": "UTF8"
+			},
+			{
+				"name": "PrimaryModuleSerialNumber",
+				"type": "UTF8"
+			},
+			{
+				"name": "PrimaryModule2SerialNumber",
+				"type": "UTF8"
+			},
+			{
+				"name": "SecondaryModuleSerialNumber",
+				"type": "UTF8"
+			},
+			{
+				"name": "ReasonForRemovalBW",
+				"type": "UTF8"
+			},
+			{
+				"name": "ReasonForRemovalAdditionalInfo",
+				"type": "UTF8"
+			},
+			{
+				"name": "ShopEventDate",
+				"type": "DATE"
+			},
+			{
+				"name": "ShippedDate",
+				"type": "DATE"
+			},
+			{
+				"name": "InvoiceDate",
+				"type": "DATE"
+			},
+			{
+				"name": "InvoiceMonth",
+				"type": "UTF8"
+			},
+			{
+				"name": "InvoiceNumber",
+				"type": "UTF8"
+			},
+			{
+				"name": "ShipToCountry",
+				"type": "UTF8"
+			},
+			{
+				"name": "EndCustomer",
+				"type": "UTF8"
+			},
+			{
+				"name": "GeographicRegionOfEndCustomer",
+				"type": "UTF8"
+			},
+			{
+				"name": "PayerAorB",
+				"type": "UTF8"
+			},
+			{
+				"name": "PrimaryModuleWorkscope",
+				"type": "UTF8"
+			},
+			{
+				"name": "PrimaryModule2Workscope",
+				"type": "UTF8"
+			},
+			{
+				"name": "SecondaryModuleWorkscope",
+				"type": "UTF8"
+			},
+			{
+				"name": "PrimaryModuleTSN",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "PrimaryModuleCSN",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "PrimaryModuleTSO",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "PrimaryModuleCSO",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "PrimaryModuleTSHSI",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "PrimaryModuleTSLV",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "PrimaryModule2TSN",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "PrimaryModule2CSN",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "PrimaryModule2TSO",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "PrimaryModule2CSO",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "PrimaryModule2TSHSI",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "PrimaryModule2TSLV",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "SecondaryModuleTSN",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "SecondaryModuleCSN",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "SecondaryModuleTSO",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "SecondaryModuleCSO",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "SecondaryModuleTSHSI",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "SecondaryModuleTSLV",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "PrimaryModuleWorkscopeFinal",
+				"type": "UTF8"
+			},
+			{
+				"name": "PrimaryModule2WorkscopeFinal",
+				"type": "UTF8"
+			},
+			{
+				"name": "SecondaryModuleWorkscopeFinal",
+				"type": "UTF8"
+			},
+			{
+				"name": "HSICategory",
+				"type": "UTF8"
+			},
+			{
+				"name": "TargetHSIInterval",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "PrimaryModuleOVHCategory",
+				"type": "UTF8"
+			},
+			{
+				"name": "PrimaryModuleTargetTBO",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "PrimaryModule2OVHCategory",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "PrimaryModule2TargetTBO",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "SecondaryModuleOVHCategory",
+				"type": "UTF8"
+			},
+			{
+				"name": "SecondaryModuleTargetTBO",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "PreviousEventHistory",
+				"type": "UTF8"
+			}
+		]
+	}
+}

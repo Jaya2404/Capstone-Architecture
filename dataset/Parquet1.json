@@ -1,0 +1,23 @@
+{
+	"name": "Parquet1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "UseCase3"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "MergedInvoice_UseCase3",
+				"fileSystem": "pwc-transformeddata"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}

@@ -32,11 +32,11 @@
 				"type": "String"
 			},
 			{
-				"name": "Plant",
+				"name": "SalesOrderNumber",
 				"type": "String"
 			},
 			{
-				"name": "SalesOrderNumber",
+				"name": "Plant",
 				"type": "String"
 			},
 			{
@@ -56,7 +56,7 @@
 				"type": "String"
 			},
 			{
-				"name": "EndCustomerARCode8",
+				"name": "EndCustomerARCode",
 				"type": "String"
 			},
 			{
@@ -64,7 +64,7 @@
 				"type": "String"
 			},
 			{
-				"name": "EndCustomerARCode10",
+				"name": "EndCustomerARCode.1",
 				"type": "String"
 			},
 			{

@@ -32,11 +32,11 @@
 				"type": "String"
 			},
 			{
-				"name": "Plant",
+				"name": "SalesOrderNumber",
 				"type": "String"
 			},
 			{
-				"name": "SalesOrderNumber",
+				"name": "Plant",
 				"type": "String"
 			},
 			{
