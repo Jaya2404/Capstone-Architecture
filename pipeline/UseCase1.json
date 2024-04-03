@@ -83,6 +83,33 @@
 					},
 					"traceLevel": "Fine"
 				}
+			},
+			{
+				"name": "UseCase2",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "UseCase1",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/jaya.chaturvedi@mail.mcgill.ca/UseCase2_Test"
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks1",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"annotations": []
