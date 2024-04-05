@@ -1,0 +1,9 @@
+{
+	"name": "df-dsl-prattwhitney",
+	"properties": {
+		"globalConfigurations": {
+			"PipelineBillingEnabled": "true"
+		}
+	},
+	"location": "canadacentral"
+}
