@@ -11,6 +11,9 @@
 		"AzureDatabricks1_accessToken": {
 			"value": ""
 		},
+		"SqlServer1_connectionString": {
+			"value": ""
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://stbusa693prattwhitney.dfs.core.windows.net"
 		},
